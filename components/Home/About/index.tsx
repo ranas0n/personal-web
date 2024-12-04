@@ -16,14 +16,14 @@ export const About: FC = () => {
                 flex flex-col"
 			>
 				<p className="text-lg tracking-tightest font-bold">
-					<Highlight>The one that aspire to be a&nbsp;{CONFIG.TITLE}...</Highlight>
+					<Highlight>Just a casual&nbsp;{CONFIG.TITLE}...</Highlight>
 				</p>
 				<h1 className="text-6xl tracking-[-5px] text-white">
 					Who am I<Highlight>?</Highlight>
 				</h1>
 				<div className="mt-4">
 					<p className="text-white text-md text-justify">
-						Hello there! I'm a Informatics fresh graduate aspiring to become a <Highlight>Software Engineer</Highlight>. I love building and experimenting with software, web applications, and machine learning topics that caught my interest in some of my free time.
+						Hello there! I'm an Informatics fresh graduate that are learning to become a better <Highlight>Software Engineer</Highlight>. I love building and experimenting with software, web applications, and machine learning topics that caught my interest in some of my free time.
 						<br />
 						<br />
 						<br />
