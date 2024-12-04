@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<Head>
 				<title>Rachmat Nasution</title>
 				<meta name="description" content="This is a website for my personal web that contain my introduction, tech stacks, and projects." />
-				<link rel="icon" href="/favicon.png" />
+				<link rel="icon" href="/favicon-1.png" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 			</Head>
 			<ThemeProvider>

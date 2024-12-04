@@ -4,5 +4,5 @@ export const CONFIG = {
 	NICKNAME: "rachmat",
 	LOCATION: "Jakarta, Indonesia",
 	TITLE: "Software Engineer",
-	AVATAR_URL: "./assets/user-01.png",
+	AVATAR_URL: "./assets/user-02.jpg",
 };
