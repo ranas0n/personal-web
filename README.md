@@ -16,7 +16,7 @@ I'm also using this project to learn planing out a soon-to-build app, working on
 ## TODO / Coming Soon 🚧
 
 Main Web
-- [ ] Maybe add a blog section to the main page (if some motivation hits 🤞).
+- [ ] Maybe add a blog section to the main page.
 
 Dashboard
 - [ ] Build out the image upload logic (need to upload images from a form to Vercel Blob Storage).
