@@ -35,9 +35,20 @@ const ProjectCardProp: FC<Project> = ({
           <div className="my-4">
             <h3 className="text-xl font-semibold truncate">{proj_name}</h3>
             <div className="relative  bg-gray-900 text-white my-1 px-2 py-1 rounded-lg border border-gray-600 inline-block">
-              <p className='text-sm'>
-              {category}
-              </p>
+              {
+                (!github && !hosting) ? (
+                  <div className="relative  bg-gray-900 text-white my-1 mx-1 px-2 py-1 rounded-lg border border-pastel-orange inline-block">
+                  <p className='text-sm'>
+                  Work on Progress
+                  </p>
+                  </div>
+                  ) : 
+                  (
+                    <p className='text-sm'>
+                      {category}
+                    </p>
+                  )
+              }
             </div>
             
             {/* {(!github && !hosting) ? (
