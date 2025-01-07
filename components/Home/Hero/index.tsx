@@ -22,12 +22,12 @@ export const Hero: FC = () => {
 			>
 				<h1 className="text-6xl tracking-tighter text-white">
 					{CONFIG.NAME}
-					{!useMediaQuery(768) ? (
+					{/* {!useMediaQuery(768) ? (
 						<p className="text-3xl">
 							<i>aka&nbsp;</i>
 							<Highlight>{CONFIG.AKA}</Highlight>
 						</p>
-					) : null}
+					) : null} */}
 				</h1>
 				<p className="mt-6 text-white text-md text-justify">
 					I am a {date - 2002} year old software developer that currently resides {" "}
