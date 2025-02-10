@@ -34,7 +34,7 @@ export const More: FC = () => {
 					Away From <Highlight>Keyboard</Highlight>?
 				</h1>
 				<p className="mt-4 text-justify md:text-end">
-				Outside of my professional pursuits, I also enjoy a variety of activities and hobbies. I like to spend time reading both fiction and non-fiction <Highlight>books</Highlight>, reading <Highlight>articles</Highlight> on a topics that caught my interest, play both single-player and multi-player <Highlight>video games</Highlight>, watching <Highlight>movies</Highlight>. and hanging out with my <Highlight>friends and family</Highlight>.
+				Outside <Highlight>work</Highlight>, I also enjoy a variety of activities and hobbies. I like to spend time reading both fiction and non-fiction <Highlight>books</Highlight>, reading <Highlight>articles</Highlight> on a topics that caught my interest, play both single-player and multi-player <Highlight>video games</Highlight>, watching <Highlight>movies</Highlight>. and hanging out with my <Highlight>friends and family</Highlight>.
 				</p>
 				{useMediaQuery(767) && (
 					<div className="flex flex-row relative">

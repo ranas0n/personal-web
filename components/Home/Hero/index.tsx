@@ -1,10 +1,10 @@
 import { FC } from "react";
 
 import { CONFIG } from "@root/libs/config";
-import Status from "@utils/lanyard";
+// import Status from "@utils/lanyard";
 import useMediaQuery from "@utils/useMediaQuery";
 import { motion, useAnimation } from "framer-motion";
-import Highlight from "@components/Highlight";
+// import Highlight from "@components/Highlight";
 
 export const Hero: FC = () => {
 	const date = new Date().getFullYear();
@@ -30,12 +30,12 @@ export const Hero: FC = () => {
 					) : null} */}
 				</h1>
 				<p className="mt-6 text-white text-md text-justify">
-					I am a {date - 2002} year old software developer that currently resides {" "}
+					I am a software developer that currently resides {" "}
 					{!useMediaQuery(980)}in&nbsp;{CONFIG.LOCATION}.
 					<br />
 					<br />
-					I have a keen interest in software development especially in backend development and machine learning. 
-					The programming language i'm familiar with are &nbsp;
+					I'm a fresh graduate Informatics student with interest in software development especially in backend development and machine learning. 
+					Programming languages i'm familiar with are &nbsp;
 					<LanguageLink
 						name={"javascript"}
 						href={"https://developer.mozilla.org/en-US/docs/Web/JavaScript/"}
