@@ -30,8 +30,8 @@ const ProjectDetails: React.FC = () => {
         enabled: !!proj_id, // Ensure query runs only when proj_id is available
     });
 
-    if (isLoading) return <p>Loading project...</p>;
-    if (error || !project) return <p>Error loading project or project not found.</p>;
+    if (isLoading) return <p className="text-center text-white">Loading project...</p>;
+    if (error || !project) return <p className="text-center text-white">Error loading project or project not found.</p>;
 
     const backgroundImage = project.proj_img || "../../assets/best-placeholder.jpg";
     const icon = <ProjectCategoryIcon category={project.category} classNames="text-4xl" />;
@@ -39,35 +39,35 @@ const ProjectDetails: React.FC = () => {
     return (
         <>
             <Header />
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col items-center bg-gray-900 py-10">
                 {/* Project Image */}
                 <img
-                    className="max-h-80 my-3 rounded-xl hover:scale-105 transition-transform"
+                    className="max-h-80 my-6 rounded-xl transition-transform transform hover:scale-105"
                     src={backgroundImage}
-                    alt={project.proj_name || "project image"}
+                    alt={project.proj_name || "Project image"}
                 />
 
                 {/* Project Name */}
-                <h1 className="text-white my-3 text-4xl text-justify w-1/3">
+                <h1 className="text-white my-4 text-4xl md:text-5xl font-bold text-center w-3/4 md:w-1/2 lg:w-1/3">
                     {project.proj_name}
                 </h1>
 
                 {/* Project Description */}
-                <p className="text-white my-3 text-justify w-1/3">
+                <p className="text-white my-3 text-lg md:text-xl text-center px-4 w-3/4 md:w-2/3 lg:w-1/2">
                     {project.description}
                 </p>
 
                 {/* Buttons Section */}
-                <div className="flex flex-col justify-end items-end w-1/3 mt-4 gap-4">
+                <div className="flex flex-col justify-center items-center w-full mt-6 gap-4">
                     <div>{icon}</div>
 
-                    <div className="flex gap-4">
+                    <div className="flex gap-6">
                         {/* GitHub Button */}
                         {project.github && (
                             <a href={project.github} target="_blank" rel="noopener noreferrer">
-                                <button className="flex items-center px-3 py-1 bg-gray-800 text-white bg-pastel-blurple rounded-sm hover:bg-gray-700 transition">
+                                <button className="flex items-center px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition duration-200 ease-in-out">
                                     <span>GitHub Repository</span>
-                                    <AiFillGithub className="ml-2" />
+                                    <AiFillGithub className="ml-2 text-xl" />
                                 </button>
                             </a>
                         )}
@@ -75,9 +75,9 @@ const ProjectDetails: React.FC = () => {
                         {/* Hosting Button */}
                         {project.hosting && (
                             <a href={project.hosting} target="_blank" rel="noopener noreferrer">
-                                <button className="flex items-center px-3 py-1 bg-blue-600 text-white bg-pastel-blurple rounded-sm hover:bg-blue-500 transition">
+                                <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition duration-200 ease-in-out">
                                     <span>Hosting Link</span>
-                                    <IoIosLink className="ml-2" />
+                                    <IoIosLink className="ml-2 text-xl" />
                                 </button>
                             </a>
                         )}

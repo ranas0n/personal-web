@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { useQuery } from "@tanstack/react-query";
 import Header from "@components/Layout/Header";
 import Footer from "@components/Layout/Footer";
-import { ProjectCard } from "@components/Project/ProjectCard";
+import { ProjectComponent } from "@components/Project/ProjectComponent";
 
 const fetchProjects = async () => {
     console.log("Fetching project list...");
@@ -30,7 +30,7 @@ const Project: NextPage = () => {
     return (
         <div className="relative">
             <Header />
-            <ProjectCard projects={projects} />
+            <ProjectComponent projects={projects} />
             <Footer />
         </div>
     );
