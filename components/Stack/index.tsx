@@ -1,11 +1,11 @@
 import { StatArrowProps } from "@chakra-ui/react";
 import Highlight from "@components/Highlight";
-import { StackProps } from "@root/pages/stack";
+import { Stackprop } from "@root/types/Stack";
 import { motion } from "framer-motion";
 import { FC } from "react";
 
 
-export const Stack: FC<StackProps> = ({ stacks }: StackProps) => {
+export const Stack: FC<{stacks: Stackprop[]}> = ({stacks}) => {
     return (
         <div>
             <div className="flex flex-col items-center text-white w-10/12 mx-auto">
@@ -35,16 +35,14 @@ const StackCard = ({ name, logo, lang }: IStackCard) => {
         <motion.div
             className={`bg-epic-black-light ${
                 lang.hoverColor
-            } flex flex-col rounded-md h-40 ${
-                lang.name == "Github" ? "hover:cursor-pointer" : null
-            }`}
+            } flex flex-col rounded-md h-40`}
             whileHover={{ y: -5 }}
             onClick={() => {
-                window.location.href = lang.href;
+                if(lang.href) window.location.href = lang.href;
             }}
         >
             <img
-                src={`${logo}`}
+                src={`${logo ? logo : 'placeholder.png'}`}
                 className="w-20 h-20 mx-auto mt-6 rounded-md"
             ></img>
             <p className="mx-auto my-auto text-white">{name}</p>
@@ -53,30 +51,24 @@ const StackCard = ({ name, logo, lang }: IStackCard) => {
 };
 
 interface StackSectionProp {
-    stacks: StackItem[];
-}
-
-interface StackItem {
-    name: string;
-    logo: string; 
-    category: string;
+    stacks: Stackprop[];
 }
 
 const StackSection = ({ stacks }: StackSectionProp) => {
-	// console.log(stacks);
+	console.log(stacks);
     return (
         <div
             className="w-full grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-5 gap-4 mt-8 md:mt-8
                 px-8 sm:px-20 md:px-24 2xl:px-56"
         >
-            {stacks
-                .map((stack, key) => (
-                    <StackCard
-                        name={stack.name}
-                        logo={stack.logo}
-                        lang={stack}
-                        key={key}
-                    />
+            {stacks.map((stack) => (
+                    <div key={stack.id}>
+                        <StackCard
+                            name={stack.name}
+                            logo={stack.logo ?? ''}
+                            lang={stack}
+                        />
+                    </div>
                 ))}
         </div>
     );

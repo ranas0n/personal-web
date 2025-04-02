@@ -1,29 +1,48 @@
-import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
-
-import { PageProps } from "@interfaces/PageProps";
+import { NextPage } from "next";
 import Header from "@components/Layout/Header";
 import Footer from "@components/Layout/Footer";
 import StackComponent from "@components/Stack";
-import { prisma } from "@root/libs/prisma";
-
-export type StackProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 
-const Stack: NextPage<PageProps> = ({ stacks }: StackProps) => {
-	return (
-		<div className="relative">
-			<Header />
-			<StackComponent stacks={stacks}/>
-			<Footer />
-		</div>
-	);
+const fetchStacks = async () => {
+    try {
+        const res = await fetch("/api/stacks");
+
+        if (!res.ok) {
+            console.error("API Error:", await res.text());
+            throw new Error("Failed to fetch the stack data.");
+        }
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error("FetchStacks Error:", error);
+        throw error;
+    }
+};
+const Stack: NextPage = () => {
+    const { data: stacks, error, isLoading, isFetching } = useQuery({
+        queryKey: ["stacks"],
+        queryFn: fetchStacks,
+        staleTime: 0, 
+        retry: 1, 
+        refetchOnWindowFocus: false, 
+    });
+    return (
+        <div className="relative">
+            <Header />
+            {isLoading || isFetching ? (
+                <p>Loading...</p>
+            ) : error ? (
+                <p>Error loading stacks</p>
+            ) : (
+                <StackComponent stacks={stacks ?? []} />
+            )}
+            <Footer />
+        </div>
+    );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const stacks = await prisma.stack.findMany();
-    return {
-        props: { stacks },
-    };
-};
 
 export default Stack;

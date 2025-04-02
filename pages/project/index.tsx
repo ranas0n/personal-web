@@ -1,31 +1,39 @@
-import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
-
-import { PageProps } from "@interfaces/PageProps";
+import { NextPage } from "next";
+import { useQuery } from "@tanstack/react-query";
 import Header from "@components/Layout/Header";
 import Footer from "@components/Layout/Footer";
-import { Placeholder } from "@components/Placeholder";
 import { ProjectCard } from "@components/Project/ProjectCard";
-import { prisma } from "@root/libs/prisma";
 
-export type ProjectProps = InferGetServerSidePropsType<typeof getServerSideProps>;
+const fetchProjects = async () => {
+    console.log("Fetching project list...");
+    const res = await fetch("/api/projects");
 
-const Project: NextPage<PageProps> = ({projects} : ProjectProps) => {
-	return (
-		<div className="relative">
-			<Header />
-			{/* <Placeholder /> */}
-			<ProjectCard projects={projects}/>
-			<Footer />
-		</div>
-	);
+    if (!res.ok) {
+        console.error("API Error:", await res.text());
+        throw new Error("Failed to fetch projects.");
+    }
+
+    const data = await res.json();
+    console.log("Fetched Projects:", data);
+    return data;
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-	const projects = await prisma.projects.findMany();
+const Project: NextPage = () => {
+    const { data: projects, error, isLoading } = useQuery({
+        queryKey: ["projects"],
+        queryFn: fetchProjects,
+    });
 
-	return {
-		props : {projects}
-	}
-}
+    if (isLoading) return <p>Loading projects...</p>;
+    if (error || !projects) return <p>Error loading projects.</p>;
+
+    return (
+        <div className="relative">
+            <Header />
+            <ProjectCard projects={projects} />
+            <Footer />
+        </div>
+    );
+};
 
 export default Project;
