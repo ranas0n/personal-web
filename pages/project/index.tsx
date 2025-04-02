@@ -24,13 +24,21 @@ const Project: NextPage = () => {
         queryFn: fetchProjects,
     });
 
-    if (isLoading) return <p>Loading projects...</p>;
-    if (error || !projects) return <p>Error loading projects.</p>;
-
     return (
         <div className="relative">
             <Header />
-            <ProjectComponent projects={projects} />
+            {isLoading ? (
+                <p>
+                    Loading Projects
+                </p>
+            ):
+            error ? (
+                <p>
+                    Error loading projects
+                </p>
+            ):
+            (<ProjectComponent projects={projects} />)
+            }
             <Footer />
         </div>
     );
