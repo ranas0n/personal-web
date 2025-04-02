@@ -19,8 +19,6 @@ Main Web
 - [ ] Maybe add a blog section to the main page.
 
 Dashboard
-- [ ] Build out the image upload logic (need to upload images from a form to Vercel Blob Storage).
-- [ ] Add more backend validation to make sure the data format is right, and add some solid error handling.
 - [ ] Add more pop-ups on button clicks (to avoid misclicks).
 
 
