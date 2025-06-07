@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Header from "@components/Layout/Header";
 import Footer from "@components/Layout/Footer";
 import { ProjectComponent } from "@components/Project/ProjectComponent";
+import { ThreeDots } from "react-loader-spinner";
 
 const fetchProjects = async () => {
     console.log("Fetching project list...");
@@ -28,17 +29,25 @@ const Project: NextPage = () => {
         <div className="relative">
             <Header />
             {isLoading ? (
-                <p>
-                    Loading Projects
-                </p>
-            ):
-            error ? (
-                <p>
-                    Error loading projects
-                </p>
-            ):
-            (<ProjectComponent projects={projects} />)
-            }
+                <div className="flex justify-center items-center min-h-[50vh]">
+                    <ThreeDots
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#7777FF"
+                        radius="9"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>
+            ) : error ? (
+                <div className="flex justify-center items-center min-h-[50vh]">
+                    <p className="text-center text-red-500 text-lg">Error loading projects</p>
+                </div>
+            ) : (
+                <ProjectComponent projects={projects} />
+            )}
             <Footer />
         </div>
     );

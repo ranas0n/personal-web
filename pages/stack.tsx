@@ -3,6 +3,7 @@ import Header from "@components/Layout/Header";
 import Footer from "@components/Layout/Footer";
 import StackComponent from "@components/Stack";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { FallingLines } from "react-loader-spinner";
 
 
 const fetchStacks = async () => {
@@ -33,9 +34,17 @@ const Stack: NextPage = () => {
         <div className="relative">
             <Header />
             {isLoading || isFetching ? (
-                <p>Loading...</p>
+                <div className="flex justify-center items-center min-h-[50vh]">
+                    <FallingLines
+                        color="#7777FF"
+                        width="100"
+                        visible={true}
+                    />
+                </div>
             ) : error ? (
-                <p>Error loading stacks</p>
+                <div className="flex justify-center items-center min-h-[50vh]">
+                    <p className="text-center text-red-500 text-lg">Error loading stacks</p>
+                </div>
             ) : (
                 <StackComponent stacks={stacks ?? []} />
             )}
