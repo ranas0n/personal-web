@@ -1,6 +1,6 @@
 export const CONFIG = {
 	NAME: "Rachmat Nasution",
-	AKA: "harmonicnauts",
+	AKA: "ranas0n",
 	NICKNAME: "rachmat",
 	LOCATION: "Jakarta, Indonesia",
 	TITLE: "Software Engineer",

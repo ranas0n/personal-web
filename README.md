@@ -9,7 +9,7 @@ I'm also using this project to learn planing out a soon-to-build app, working on
 ## What's Under the Hood? 🔧
 
 - **>> Main Website <<**: Originally built with Next.js 12, but I refactored it to Next.js 14. It's hosted on Vercel 🚀 and uses Docker for deployment options.
-- **Admin Dashboard**: Built using React and Express.js. TypeScript is powering both projects for its type safety. You can check it out at this repo [https://github.com/harmonicnauts/personal-web-admin](https://github.com/harmonicnauts/personal-web-admin)
+- **Admin Dashboard**: Built using React and Express.js. TypeScript is powering both projects for its type safety. You can check it out at this repo [https://github.com/ranas0n/personal-web-admin](https://github.com/ranas0n/personal-web-admin)
 - **Database & Storage**: Both the main web and dashboard use PostgreSQL for the database, and Vercel Blob Storage for handling file uploads. Everything except the dashboard is hosted in the same project on Vercel. 
 
 
@@ -34,7 +34,7 @@ To use this repository, you will need the following installed locally:
 
 Before you start, make sure to install the dependencies. Clone the repository and navigate to the directory:
 ```sh
-git clone https://github.com/harmonicnauts/personal-web.git
+git clone https://github.com/ranas0n/personal-web.git
 cd personal-web
 ```
 

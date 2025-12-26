@@ -107,7 +107,7 @@ export const STACK = [
 	{
 		name: "GitHub",
 		logo: "github.png",
-		href: "https://github.com/harmonicnauts",
+		href: "https://github.com/ranas0n",
 		hoverColor: "hover:bg-pastel-pink",
 		category: "using",
 	},
