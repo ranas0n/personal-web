@@ -20,24 +20,20 @@ const Project: NextPage = () => {
     });
 
     return (
-        <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
-            <PageLayout>
-                <div className="relative text-center pt-20 pb-16 px-4">
-                    <div className="absolute inset-0 bg-gradient-to-b from-blue-600/10 via-purple-600/5 to-transparent pointer-events-none" />
-                    <div className="relative z-10 max-w-4xl mx-auto">
-                        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-                            My Projects
-                        </h1>
-                        <p className="text-xl md:text-2xl text-gray-400 font-light">
-                            Explore the work I've created
-                        </p>
-                        <div className="mt-8 h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
-                    </div>
+        <PageLayout>
+            <div className="w-full pb-16">
+                <div className="flex flex-col items-center text-white w-10/12 mx-auto">
+                    <h1 className="text-center text-3xl tracking-tightest mb-4">
+                        My Projects
+                    </h1>
+                    <p className="text-justify text-gray-400">
+                        Explore the work I've created and contributed to.
+                    </p>
                 </div>
 
-                <div className="pb-20">
+                <div className="mt-12">
                     {isLoading ? (
-                        <LoadingSpinner className="min-h-[60vh]" />
+                        <LoadingSpinner className="min-h-[40vh]" />
                     ) : error ? (
                         <ErrorDisplay
                             title="Failed to load projects"
@@ -48,8 +44,8 @@ const Project: NextPage = () => {
                         <ProjectComponent projects={projects} />
                     )}
                 </div>
-            </PageLayout>
-        </div>
+            </div>
+        </PageLayout>
     );
 };
 
