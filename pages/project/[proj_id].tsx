@@ -1,24 +1,20 @@
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import Footer from "@components/Layout/Footer";
-import Header from "@components/Layout/Header";
+import PageLayout from "@components/Layout/PageLayout";
 import ProjectCategoryIcon from "@components/Project/ProjectCategoryIcon";
 import { AiFillGithub } from "react-icons/ai";
 import { IoIosLink } from "react-icons/io";
-import { ThreeDots } from "react-loader-spinner";
+import LoadingSpinner from "@components/UI/LoadingSpinner";
+import ErrorDisplay from "@components/UI/ErrorDisplay";
 
 const fetchProject = async (proj_id: string) => {
-    console.log("Fetching project details...");
     const res = await fetch(`/api/projects/${proj_id}`);
 
     if (!res.ok) {
-        console.error("API Error:", await res.text());
         throw new Error("Failed to fetch project data.");
     }
 
-    const data = await res.json();
-    console.log("Fetched Project Data:", data);
-    return data;
+    return res.json();
 };
 
 const ProjectDetails: React.FC = () => {
@@ -32,8 +28,7 @@ const ProjectDetails: React.FC = () => {
     });
 
     return (
-        <>
-            <Header />
+        <PageLayout>
             <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden">
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse" />
@@ -41,29 +36,12 @@ const ProjectDetails: React.FC = () => {
                 </div>
 
                 {isLoading ? (
-                    <div className="flex flex-col justify-center items-center min-h-[80vh]">
-                        <ThreeDots
-                            visible={true}
-                            height="80"
-                            width="80"
-                            color="#7777FF"
-                            radius="9"
-                            ariaLabel="three-dots-loading"
-                        />
-                        <p className="mt-6 text-gray-400 text-lg animate-pulse">Loading project details...</p>
-                    </div>
+                    <LoadingSpinner className="min-h-[80vh]" />
                 ) : error || !project ? (
-                    <div className="flex flex-col justify-center items-center min-h-[80vh] px-4">
-                        <div className="bg-gradient-to-br from-red-900/40 to-red-800/20 backdrop-blur-sm p-8 rounded-2xl border border-red-700/50 text-center max-w-md shadow-2xl">
-                            <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg className="w-8 h-8 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <p className="text-red-300 text-xl font-semibold mb-2">Project Not Found</p>
-                            <p className="text-red-400/80 text-sm">Unable to load project details</p>
-                        </div>
-                    </div>
+                    <ErrorDisplay
+                        title="Project Not Found"
+                        message="Unable to load project details"
+                    />
                 ) : (
                     <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
                         <button
@@ -79,7 +57,8 @@ const ProjectDetails: React.FC = () => {
                         <div className="relative">
                             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500" />
                             
-                            <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl shadow-2xl overflow-hidden border border-gray-700/50">
+                            <div className={`relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl shadow-2xl
+                                           overflow-hidden border border-gray-700/50`}>
                                 <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden">
                                     <img
                                         className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
@@ -133,10 +112,13 @@ const ProjectDetails: React.FC = () => {
                                                 className="flex-1"
                                             >
                                                 <button className="relative w-full group overflow-hidden">
-                                                    <div className="absolute inset-0 bg-gradient-to-r from-gray-700 to-gray-800 transition-transform duration-300 group-hover:scale-105" />
-                                                    <div className="absolute inset-0 bg-gradient-to-r from-gray-600 to-gray-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                                    
-                                                    <div className="relative flex items-center justify-center gap-3 px-8 py-5 text-white rounded-xl border border-gray-600 group-hover:border-gray-500 transition-all duration-300">
+                                                    <div className="absolute inset-0 bg-gradient-to-r from-gray-700 to-gray-800
+                                                                   transition-transform duration-300 group-hover:scale-105" />
+                                                    <div className="absolute inset-0 bg-gradient-to-r from-gray-600 to-gray-700
+                                                                   opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                                                    <div className={`relative flex items-center justify-center gap-3 px-8 py-5 text-white rounded-xl
+                                                                   border border-gray-600 group-hover:border-gray-500 transition-all duration-300`}>
                                                         <AiFillGithub className="text-2xl group-hover:rotate-12 transition-transform duration-300" />
                                                         <span className="font-bold text-lg">View Repository</span>
                                                     </div>
@@ -186,8 +168,7 @@ const ProjectDetails: React.FC = () => {
                     </div>
                 )}
             </div>
-            <Footer />
-        </>
+        </PageLayout>
     );
 };
 

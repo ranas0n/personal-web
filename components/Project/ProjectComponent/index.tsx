@@ -17,16 +17,21 @@ const ProjectCardProp: FC<{ project: Project; index: number }> = ({ project, ind
   return (
     <Link href={'/project/' + project.proj_id} passHref>
       <div
-        className="group relative overflow-hidden w-full h-full bg-gray-900 rounded-2xl transition-all duration-500 transform hover:-translate-y-3 hover:shadow-2xl cursor-pointer"
-        style={{ 
+        className={`group relative overflow-hidden w-full h-full bg-gray-900 rounded-2xl
+                   transition-all duration-500 transform hover:-translate-y-3 hover:shadow-2xl cursor-pointer`}
+        style={{
           animationDelay: `${index * 0.1}s`,
           animation: 'fadeInUp 0.6s ease-out forwards',
           opacity: 0
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl" />
+        <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl`} />
         
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-700/50 via-gray-800/50 to-gray-900/50 group-hover:from-blue-500/50 group-hover:via-purple-500/50 group-hover:to-pink-500/50 transition-all duration-500" style={{ padding: '1px' }}>
+        <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-gray-700/50 via-gray-800/50 to-gray-900/50
+                        group-hover:from-blue-500/50 group-hover:via-purple-500/50 group-hover:to-pink-500/50
+                        transition-all duration-500`}
+             style={{ padding: '1px' }}>
           <div className="h-full w-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl" />
         </div>
 
@@ -52,7 +57,9 @@ const ProjectCardProp: FC<{ project: Project; index: number }> = ({ project, ind
           </div>
 
           <div className="relative p-6">
-            <h3 className="text-2xl font-bold text-white mb-3 truncate group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:via-purple-400 group-hover:to-pink-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+            <h3 className={`text-2xl font-bold text-white mb-3 truncate
+                           group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:via-purple-400 group-hover:to-pink-400
+                           group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}>
               {project.proj_name}
             </h3>
             

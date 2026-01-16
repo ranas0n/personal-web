@@ -1,9 +1,9 @@
 import { NextPage } from "next";
-import Header from "@components/Layout/Header";
-import Footer from "@components/Layout/Footer";
+import PageLayout from "@components/Layout/PageLayout";
 import StackComponent from "@components/Stack";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { FallingLines } from "react-loader-spinner";
+import LoadingSpinner from "@components/UI/LoadingSpinner";
+import ErrorDisplay from "@components/UI/ErrorDisplay";
 
 
 const fetchStacks = async () => {
@@ -31,25 +31,15 @@ const Stack: NextPage = () => {
         refetchOnWindowFocus: false, 
     });
     return (
-        <div className="relative">
-            <Header />
+        <PageLayout>
             {isLoading || isFetching ? (
-                <div className="flex justify-center items-center min-h-[50vh]">
-                    <FallingLines
-                        color="#7777FF"
-                        width="100"
-                        visible={true}
-                    />
-                </div>
+                <LoadingSpinner type="falling-lines" size="100" className="min-h-[50vh]" />
             ) : error ? (
-                <div className="flex justify-center items-center min-h-[50vh]">
-                    <p className="text-center text-red-500 text-lg">Error loading stacks</p>
-                </div>
+                <ErrorDisplay title="Error loading stacks" />
             ) : (
                 <StackComponent stacks={stacks ?? []} />
             )}
-            <Footer />
-        </div>
+        </PageLayout>
     );
 };
 
