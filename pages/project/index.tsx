@@ -27,7 +27,7 @@ const Project: NextPage = () => {
                         My Projects
                     </h1>
                     <p className="text-justify text-gray-400">
-                        Explore the work I've created and contributed to.
+                        Explore some of small projects I've made.
                     </p>
                 </div>
 
